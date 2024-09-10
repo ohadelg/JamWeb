@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Primary Button - blue one with white text */
+.primary-btn {
+  @apply bg-blue-500 text-white font-bold py-2 px-4 rounded; 
+}
+
+/* Primary Button Hover - more dark when stand on */
+.primary-btn:hover {
+  @apply bg-blue-700; 
+}
+
+/* Text Input */
+.text-input {
+  @apply shadow appearance-none border rounded w-full py-2 px-3 text-gray-600 leading-tight;
+}
+
+/* Text Input Focus - more dark when focus */
+.text-input:focus {
+  @apply outline-none border-gray-400; 
+}
+
+/* pass-input */
+.pass-input {
+  @apply shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight;
+}
+
+/* pass-input focus */
+.pass-input:focus {
+  @apply outline-none border-gray-400; 
+}
+
+/* label text Message */
+.label-text-input {
+  @apply text-gray-700 text-sm font-bold mb-2 block; 
+}
