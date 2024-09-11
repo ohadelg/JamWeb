@@ -1,2 +1,4 @@
 # JamWeb
-Jam web that allows 
+
+## A web based app that....
+

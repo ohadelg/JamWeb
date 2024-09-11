@@ -3,6 +3,15 @@
 @tailwind utilities;
 
 /* Primary Button - blue one with white text */
+.secondary-btn {
+  @apply bg-blue-300 text-white font-bold py-2 px-4 rounded; 
+}
+
+/* Primary Button Hover - more dark when stand on */
+.secondary-btn:hover {
+  @apply bg-blue-600; 
+}
+
 .primary-btn {
   @apply bg-blue-500 text-white font-bold py-2 px-4 rounded; 
 }
