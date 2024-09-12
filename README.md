@@ -1,4 +1,4 @@
 # JamWeb
 
-## A web based app that....
+## An online rehearsal session
 
