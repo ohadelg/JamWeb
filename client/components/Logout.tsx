@@ -1,18 +1,24 @@
 'use client'
 
 import { useRouter } from 'next/router'
-// import { useEffect } from 'react'
+import { URL_BEGIN } from '@/actions/constant'
+import handlers from '@actions/handlers'
+import { socket } from '@/pages/main'
 
 export default function LogoutButton() {
     const router = useRouter()
     const handleLogout = () => {
-        fetch('http://localhost:8080/api/logout', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            credentials: 'include'
-        })
-        .then(() => router.push('/login'))
-        .catch((error) => console.error(error))
+        
+        // fetch('URL_BEGIN+/api/logout', {
+        //     method: 'POST',
+        //     headers: { 'Content-Type': 'application/json' },
+        //     body: 'disconnect'
+        // })
+        // .then(() => router.push('/login'))
+        // .catch((error) => console.error(error))
+        socket.disconnect()
+        console.log('Disconnected Socket')
+        router.push('/login')
     }
 
     // useEffect(() => {

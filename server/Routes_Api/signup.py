@@ -27,7 +27,8 @@ def signup():
                     lastName=data['lastName'],
                     email=data['email'],
                     password=data['password'],
-                    instrument=data['instrument'])
+                    instrument=data['instrument'],
+                    level=data['level'])
     
     try:
         users_db.session.add(new_user)

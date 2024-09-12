@@ -5,7 +5,7 @@ import { PORT, WEB_PROTOCOL, ADDRESS } from "./constant"
 
 export async function checkAuth() {
     try{
-        const response = await fetch(WEB_PROTOCOL + ADDRESS + ':' + PORT +'/api/checkAuth', {
+        const response = await fetch(WEB_PROTOCOL + ADDRESS + ':' + PORT +'/api/authCheck', {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include'

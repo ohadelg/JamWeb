@@ -30,7 +30,7 @@ def signupAdmin():
                     email=data['email'],
                     password=data['password'],
                     instrument=data['instrument'],
-                    Admin = True)
+                    level = data['level'])
     
     try:
         users_db.session.add(new_user)

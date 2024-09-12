@@ -4,9 +4,12 @@ import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
 import { INSTRUMENTS, WEB_PROTOCOL, ADDRESS, PORT } from '../actions/constant'
 
-export default function CreateRegistryForm({reqType = 'signup'}) {
+export default function CreateRegistryForm({reqType='signup'}) {
     // Create a router object
     const router = useRouter()
+    if (reqType == 'signupA') {
+        var admin = true;
+    } else { var admin = false;}
     
     interface FormData {
         firstName: string;
@@ -15,6 +18,7 @@ export default function CreateRegistryForm({reqType = 'signup'}) {
         password: string;
         confirmPassword: string;
         instrument: string;
+        level: boolean;
     }
     
     const [formData, setFormData] = useState<FormData>({  
@@ -23,7 +27,8 @@ export default function CreateRegistryForm({reqType = 'signup'}) {
         email: '',
         password: '',
         confirmPassword: '',
-        instrument: ''
+        instrument: '',
+        level: admin
     });
 
     // create error state variables for each form field

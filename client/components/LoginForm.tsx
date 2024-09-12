@@ -2,7 +2,7 @@
 
 import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
-import { WEB_PROTOCOL, ADDRESS, PORT } from '../actions/constant'
+import { WEB_PROTOCOL, ADDRESS, PORT, DEBUG } from '../actions/constant'
 
 // import { validatePassword } from '../utils/validatePassword'
 
@@ -81,6 +81,15 @@ export default function CreateLoginForm() {
                 console.log('response.ok:', response);
                 const data = await response.json();
                 console.log('Data:', data);
+                // if the server response is 'Connected'
+                localStorage.setItem('token', data.token);
+                localStorage.setItem('level', data.level);
+                localStorage.setItem('name', data.firstName);
+                if (DEBUG) {
+                    console.log('token:', localStorage.getItem('token'));
+                    console.log('level:', localStorage.getItem('level'));
+                    console.log('name:', localStorage.getItem('name'));
+                };
 
                 // store token in local storage
                 if (data.message == 'Connected') {
@@ -98,7 +107,7 @@ export default function CreateLoginForm() {
             console.error('An unexpected error happened:', error);
         }
         // log form data
-        console.log(formData);
+        // console.log(formData);
     }
 
 // return part
@@ -182,3 +191,4 @@ return (
         </form>
     </div>
 )}
+

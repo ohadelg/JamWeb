@@ -6,7 +6,8 @@ export const INSTRUMENTS = ["Guitar", "Bass", "Drums", "Flute", "Singer"];
 // Web Address
 export const WEB_PROTOCOL = 'http://',
 ADDRESS = 'localhost',
-PORT = '8080';
+PORT = '8080',
+URL_BEGIN = WEB_PROTOCOL+ADDRESS+":"+PORT;
 
 // Alerts
 
