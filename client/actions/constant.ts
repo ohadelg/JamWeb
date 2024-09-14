@@ -39,4 +39,9 @@ CONTENT_TYPE = 'Content-Type',
 APPLICATION_JSON = 'application/json',
 TEXT_HTML = 'text/html',
 IMAGE_JPEG = 'image/jpeg';
+
 // User
+export const SONGS = [
+    {'name': 'Hey jude', 'value': 'hey_jude', 'dir': 'ltr', 'artist': 'The Beatles' },
+    {'name': 'ואיך שלא', 'value': 'veech_shelo', 'dir': 'rtl', 'artist': 'אריאל זילבר' },
+    ];

@@ -2,7 +2,7 @@ from flask import Flask, render_template, jsonify, request
 from flask_cors import CORS # type: ignore
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 from flask_sqlalchemy import SQLAlchemy
-from functions import config, setSocketHandlers
+from functions import config, getSongMessage, song_orgenizer
 from Objects.users import Users
 from cryptography import x509
 from cryptography.hazmat.backends import default_backend
@@ -50,50 +50,45 @@ def load_user(user_id):
 # @jwt_required()
 def handle_connect(data):
     try: 
-        print(f"\nData: {data}\n")
+        print(f"\nconnect Data: {data}\n")
         user_id = data.get('token')
-        """# verify_jwt_in_request(optional=False, token=data.get('token'))
-        # id_from_jwt = get_jwt_identity()
-        # print(f"ID from token: {id_from_jwt}")"""
         with app.app_context():
             user = Users.query.filter_by(id=user_id).first()
-        """ print(f"\nverify_jwt_in_request: {verify_jwt_in_request(optional=False, token=data.get('token'))}\n")
-        # print(f"The current user id is: {get_jwt_identity()}\n")
-        # print(f"\nAuth: {data} | Current User: {current_user}\n")"""
     except Exception as e:
         emit('error', {'message': f'data probelem: {e}'})
-    if user.level == '1':
+    # No user at all
+    if user is None:
+        emit('error', {'message': 'User not found'})
+        # emit('disconnect')
+        if constants.DEBUG:
+            print('User not found')
+        return
+    else:
         if user.instrument == 'Singer':
-            join_room('SingersRoom')
+            room_name = 'SingersRoom'
         else:
-            join_room('MainRoom')
-        print('Start Broadcast')
-        emit('play', {}, broadcast=True, room='MainRoom')
-        emit('play', {}, broadcast=True, room='SingersRoom')
-    if constants.DEBUG:
-        print('Client connected (socket handler)')
-        print(f"user if: {user.id} | user name: {user.firstName} | user level: {user.level} | user instrument: {user.instrument}")
-    room_name = 'MainRoom'
-    try:
-        # if current_user.is_authenticated:
-        with app.app_context():
-            id = user.id
-            level = user.level
-            name = user.firstName
-            if user.instrument == 'Singer':
-                room_name = 'SingersRoom'
+            room_name = 'MainRoom'
         if constants.DEBUG:
-            print(f'User {id} connected successfully')
-            print(f"-- User ID: {id}, Level: {level}, Name: {name} --")
-    except:
-        if constants.DEBUG:
-            print('Error in user data')
-        logging.error('Error in user data')
-        id = 'Undefined'
-        level = 'Undefined'
-        name = 'Undefined'
+            print('Client connected (socket handler)')
+            print(f"user if: {user.id} | user name: {user.firstName} | user level: {user.level} | user instrument: {user.instrument}")
+        try:
+            # if current_user.is_authenticated:
+            with app.app_context():
+                id = user.id
+                level = user.level
+                name = user.firstName
+            if constants.DEBUG:
+                print(f'User {id} connected successfully')
+                print(f"-- User ID: {id}, Level: {level}, Name: {name} --")
+        except:
+            if constants.DEBUG:
+                print('Error in user data')
+            logging.error('Error in user data')
+            id = 'Undefined'
+            level = 'Undefined'
+            name = 'Undefined'
     
-    join_room(room_name)
+        join_room(room_name)
 
     # send the token to the client 
     emit('message', {'info': "success", 'token': id, 'level': level, "name": name})
@@ -102,11 +97,39 @@ def handle_connect(data):
     if constants.DEBUG:
         print(f'User {id} connected successfully and joined room: {room_name}')
 
+@socket.on('chooseSong')
+def chooseSong(data):
+    print(f"Data (choose song): {data}")
+    print(f"song name: {data.get('song')}")
+    token = data.get('token')
+    user_id = data.get('token')
+    song_name = data.get('song')
+    dir = data.get('dir') # The direction of the words
+    with app.app_context():
+        user = Users.query.filter_by(id=user_id).first()
+        if user is None:
+            emit('error', {'message': 'User not found'})
+            return
+        elif user.level == '0':
+            emit('error', {'message': 'User is not premitted to choose song'})
+            return
+        elif user.level == '1': # case the user is admin 
+            singersMessage, instrumentsMessage = getSongMessage(songName=song_name, dir=dir)
+            emit('play', {'song': f'song name: {song_name}', 'dir': dir, 'display': instrumentsMessage}, broadcast=True, room='MainRoom')
+            emit('play', {'song': f'song name: {song_name}', 'dir': dir, 'display': singersMessage}, broadcast=True, room='SingersRoom')
+
 # On Disconnect
 @socket.on('disconnect')
 def disconnect():
     if constants.DEBUG:
         print('Client disconnected (socket handler)')
+
+@socket.on('quit')
+def quit():
+    if constants.DEBUG:
+        print('Client quit (socket handler)')
+    emit('quit', broadcast=True)
+
 
 @socket.on('play')
 def play(data):

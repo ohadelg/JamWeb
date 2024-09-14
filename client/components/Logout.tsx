@@ -17,6 +17,9 @@ export default function LogoutButton() {
         // .then(() => router.push('/login'))
         // .catch((error) => console.error(error))
         socket.disconnect()
+        localStorage.removeItem('token')
+        localStorage.removeItem('name')
+        localStorage.removeItem('level')
         console.log('Disconnected Socket')
         router.push('/login')
     }

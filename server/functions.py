@@ -7,6 +7,7 @@ from flask_socketio import SocketIO, join_room, leave_room, emit
 from actions import constans as constants
 import logging
 import os
+import json
 
 # Set global variable for users sql
 global users_db
@@ -35,108 +36,65 @@ def config(app):
     login_manager.login_view = 'login'
     return users_db, login_manager
 
-def setSocketHandlers(socketio):
-        """
-        Set Socket handlers with decorators
-        """
-        # On Connect
-        @socketio.on('connect')
-        def handle_connect():
-            if constants.DEBUG:
-                print('Client connected (socket handler)')
-            # when connected to the socket, join the main room
-            # if current_user.instrument == 'Singer':
-            #     room_name = 'singersRoom'
-            # else:
-            #     room_name = 'MainRoom'
+def song_orgenizer(data, dir='ltr') -> str:
+    """ return a song list"""
+    songSingers = ''
+    songInstruments = ''
+    lyrics = ''
+    chords = ''
 
-            join_room("room_name")
+    for verse in data:
+        for line in verse:
+            lyric = line['lyrics']
+            lyrics += f'{lyric}  '
+            chord = line.get('chords', '')
+            if dir == 'rtl':
+                chord = chord[::-1]
+                chords += ' ' * round(max((1+ len(lyric) - len(chord))/2,0)) + f'{chord} ' +' ' *round(max((1+len(lyric) - len(chord))/2, 0))
+            else:
+                chords += ' ' * round(max((1+ len(lyric) - len(chord))/2,0)) + f'{chord} ' +' ' *round(max((1+len(lyric) - len(chord))/2, 0))
+        if dir == 'rtl':
+            chords = "  "+chords[::-1]
+        songSingers += f'{lyrics}\n'
+        songInstruments += f'{chords}\n{lyrics}\n'
+        lyrics = ''
+        chords = ''
 
-            try:
-                # if current_user.is_authenticated:
-                id = current_user.id
-                level = current_user.level
-                name = current_user.name
-                if constants.DEBUG:
-                    print(f'User {current_user.id} connected successfully')
-                    print(f"-- User ID: {id}, Level: {level}, Name: {name} --")
-            except:
-                if constants.DEBUG:
-                    print('Error in user data')
-                logging.error('Error in user data')
-                id = 'Undefined'
-                level = 'Undefined'
-                name = 'Undefined'
+    return songSingers, songInstruments
 
-            # send the token to the client 
-            emit('message', {'info': "success", 'token': id, 'level': level, "name": name})
-
-            # for debug only
-            if constants.DEBUG:
-                print(f'User {id} connected successfully and joined room: {"room_name"}')
-
-        # On Disconnect
-        @socketio.on('disconnect')
-        def handle_disconnect():
-            if constants.DEBUG:
-                print('Client disconnected (socket handler)')
-
-        @socketio.on('play')
-        def handle_play(data):
-            if constants.DEBUG:
-                print('Handle Play, data: ' + data)
-            try:
-                token = data['token']
-                level = data['level']
-                song_name = data['song_name']
-
-                # load the song from file
-                song_file_name = f'{song_name}.json'
-                with open(f'./songs/{song_file_name}', 'r') as file:
-                    song = file.read()
-                
-                if constants.DEBUG:
-                    print(f'Loaded song: {song}')
-                # need to continue
-
-                
-            except:
-                logging.error('Error in data format')
-                return
-            
-            emit('play', data, broadcast=True)
-            print(f'Play: {data} broadcasted')
-        return
-
-def socketConnections(app):
+def getSongMessage(songName, group='all', dir='ltr'):
     """
-    function to connect the socket
-
-    args:
-        app: Flask app
+    Get songName and return a string with only the lyrics
     
-    returns:
-        socket: SocketIO object
-    """
-    print('Connecting socket')
-    socket = SocketIO(app, cors_allowed_origins="http://localhost:3000")
-    setSocketHandlers(socket)
-    socket.run(app, debug=constants.DEBUG, port=int(constants.PORT))
-
-def read_file(file_name):
-    """
-    Read a file and return its content
-
     args:
-        file_name: str
-    
-    returns:
-        str: content of the file
-    """
-    with open(file_name, 'r') as file:
-        content = file.read()
-    return content
+        songName: str
 
+    returns:
+        str: lyrics of the song
+    """
+    # print(f'song start | value: {songName} | group: {group} | dir: {dir}')
+
+    songPath = os.path.join(os.getcwd(), 'songs', f'{songName}.json')
+    
+    with open(songPath, 'r', encoding='utf-8') as file:
+        songContent = file.read()
+
+        try:
+            songJson = json.loads(songContent)
+        except Exception as e:
+            print(f'Error: {e}')
+    
+    songSinger, songInstrument = song_orgenizer(songJson, dir)
+    # print(f'sondSingerList: \n{songSinger}\n songInstrumentList: \n{songInstrument}')
+    
+    if group == 'all':
+        return songSinger, songInstrument
+    elif group == 'singer':
+        return songSinger
+    elif group == 'instrument':
+        return songInstrument
+    else:
+        raise ValueError('Invalid group')
 
 
 

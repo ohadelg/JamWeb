@@ -3,7 +3,7 @@ from flask_login import login_user, login_required, current_user
 from Objects.users import Users
 from werkzeug.security import check_password_hash
 from middleware.middlewares import content_type_middleware, valid_data_middleware, check_user_middleware, valid_data_login_middleware
-from functions import users_db, setSocketHandlers, socketConnections
+from functions import users_db
 import actions.constans as constants
 from flask_socketio import SocketIO
 import logging

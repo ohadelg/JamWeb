@@ -81,6 +81,7 @@ export default function CreateLoginForm() {
                 console.log('response.ok:', response);
                 const data = await response.json();
                 console.log('Data:', data);
+
                 // if the server response is 'Connected'
                 localStorage.setItem('token', data.token);
                 localStorage.setItem('level', data.level);
@@ -92,7 +93,11 @@ export default function CreateLoginForm() {
                 };
 
                 // store token in local storage
-                if (data.message == 'Connected') {
+                if (data.level == true) {
+                    console.log('Admin Loged in');
+                    router.push('/mainAdmin');
+                }
+                else if (data.message == 'Connected') {
                     console.log('Connected');
                     // redirect to the login page
                     router.push('/main');
