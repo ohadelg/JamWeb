@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { socket } from '../pages/main';
+import { socket } from '../app/main';
 import { SONGS } from '@/actions/constant';
 import QuitButton from './quitButton';
 
