@@ -1,2 +1,2 @@
-web: cd client && npm run start
+web: cd client && npm run build && npm run start
 api: cd server && pip install -r requirments.txt && python server.py
