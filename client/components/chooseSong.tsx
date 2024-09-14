@@ -1,4 +1,4 @@
-import React, { use, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { socket } from '../pages/mainAdmin';
 import { SONGS } from '@/actions/constant';
@@ -6,7 +6,7 @@ import { SONGS } from '@/actions/constant';
 export default function WaitComponent() {
     const router = useRouter();
     const [song, setSong] = useState<string>("hey_jude");
-    const [title, setTitle] = useState<string>("Choose a song");
+    // const [title, setTitle] = useState<string>("Choose a song");
     const [tokenID, setTokenID] = useState<string | null>("");
     
     useEffect(() => {
@@ -27,7 +27,7 @@ export default function WaitComponent() {
     return (
         <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center">
             <div className="bg-gray-300 border border-gray-900 text-black-900 px-4 py-3 rounded relative" role="info">
-                <h1 className="text-3xl font-bold mb-6 text-center">{title}</h1>
+                {/* <h1 className="text-3xl font-bold mb-6 text-center">{title}</h1> */}
                 <form onSubmit={Submit}>
                     <div className="mb-4">
                         <label className = 'label-text-input' htmlFor="song">Songs:</label>

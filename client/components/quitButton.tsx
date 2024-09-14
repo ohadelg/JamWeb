@@ -1,12 +1,11 @@
 'use client'
 
-import { useRouter } from 'next/router'
-import { URL_BEGIN } from '@/actions/constant'
-import handlers from '@actions/handlers'
+// import { useRouter } from 'next/router'
+// import { URL_BEGIN } from '@/actions/constant'
 import { socket } from '@/pages/main'
 
 export default function quitButton() {
-    const router = useRouter()
+    // const router = useRouter()
     const handleQuit = () => {
         socket.emit('quit');
     }

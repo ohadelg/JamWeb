@@ -26,5 +26,15 @@ const config: Config = {
     },
   },
   plugins: [],
+  // purge: {
+  //   enabaled: false,
+  //   content: [
+  //     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
+  //     "./components/**/*.{js,ts,jsx,tsx,mdx}",
+  //     "./app/**/*.{js,ts,jsx,tsx,mdx}",],
+  //   option: {
+  //     safelist: ['h-7/10', 'w-4/5'],
+  //   }
+  // }
 };
 export default config;

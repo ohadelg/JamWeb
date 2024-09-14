@@ -1,4 +1,4 @@
-import React, { useState, useEffect, use } from 'react';
+import React, { useState, useEffect } from 'react';
 import { socket } from '../pages/main';
 import { SONGS } from '@/actions/constant';
 import QuitButton from './quitButton';
@@ -6,7 +6,7 @@ import QuitButton from './quitButton';
 export default function WaitComponent() {
   const [message, setMessage] = useState("Hey,\nWelcome to JaMoveo rehearsal sesion.\nWe are waiting for the admin to start the session...\n");
   const [messageLines, setMessageLines]  = useState<string[]>([]);
-  const [theName, setTheName] = useState<string | null>(""); 
+  // const [theName, setTheName] = useState<string | null>(""); 
   const [songName, setSongName] = useState("");
   const [text_dir, setText_dir] = useState("ltr");
   const isAdmin = localStorage.getItem('level') == '1';
@@ -14,9 +14,8 @@ export default function WaitComponent() {
 
   useEffect(() => {
     // Retrieve name from localStorage once when the component mounts
-    const name = localStorage.getItem('name');
-    if (name != null && name != 'undefined') {
-    setTheName(name);}; 
+    // const name = localStorage.getItem('name');
+    // if (name != null && name != 'undefined') {setTheName(name);}; 
 
     // Listen for 'play' event from Socket.IO
     const handlePlay = (data: {song: string, dir: string, display: string }) => {

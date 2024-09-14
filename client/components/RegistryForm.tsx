@@ -7,9 +7,7 @@ import { INSTRUMENTS, WEB_PROTOCOL, ADDRESS, PORT } from '../actions/constant'
 export default function CreateRegistryForm({reqType='signup'}) {
     // Create a router object
     const router = useRouter()
-    if (reqType == 'signupA') {
-        var admin = true;
-    } else { var admin = false;}
+    const admin = reqType === 'signupA';
     
     interface FormData {
         firstName: string;

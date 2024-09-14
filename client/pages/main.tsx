@@ -1,14 +1,14 @@
 import LogoutButton from "@/components/Logout";
 import WaitComponent from "@/components/waitMessage";
-import { checkAuth } from "@/actions/checkAuth";
+// import { checkAuth } from "@/actions/checkAuth";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { io } from "socket.io-client";
-import { URL_BEGIN } from "../actions/constant";
-import { emit } from "process";
-import exp from "constants";
+// import { URL_BEGIN } from "../actions/constant";
+// import { emit } from "process";
+// import exp from "constants";
 
-export let name: srting | null = null;
+export let name: string | null = null;
 export let tokenID: string | null = null;
 
 // make sure that the window object is defined

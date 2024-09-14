@@ -14,11 +14,11 @@ function Index() {
         console.log('data: ', data);
         console.log('people: ', people);
         // Initialize abilities object with empty strings for each person
-        setAbilities(data.people.reduce((acc, person) => ({ ...acc, [person]: '' }), {}));
+        setAbilities(data.people.reduce((acc: { [key: string]: string }, person: string) => ({ ...acc, [person]: '' }), {}));
       });
-  }, []);
+  }, [people]);
 
-  const handleAbilityChange = (person, event) => {
+  const handleAbilityChange = (person: string, event: React.ChangeEvent<HTMLInputElement>) => {
     const newAbilities = { ...abilities, [person]: event.target.value };
     setAbilities(newAbilities);
     console.log('newAbilities: ', newAbilities);

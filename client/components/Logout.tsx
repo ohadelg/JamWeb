@@ -1,21 +1,13 @@
 'use client'
 
 import { useRouter } from 'next/router'
-import { URL_BEGIN } from '@/actions/constant'
-import handlers from '@actions/handlers'
+// import { URL_BEGIN } from '@/actions/constant'
 import { socket } from '@/pages/main'
 
 export default function LogoutButton() {
     const router = useRouter()
     const handleLogout = () => {
-        
-        // fetch('URL_BEGIN+/api/logout', {
-        //     method: 'POST',
-        //     headers: { 'Content-Type': 'application/json' },
-        //     body: 'disconnect'
-        // })
-        // .then(() => router.push('/login'))
-        // .catch((error) => console.error(error))
+
         socket.disconnect()
         localStorage.removeItem('token')
         localStorage.removeItem('name')
@@ -23,16 +15,6 @@ export default function LogoutButton() {
         console.log('Disconnected Socket')
         router.push('/login')
     }
-
-    // useEffect(() => {
-    //     fetch('/api/logout', {
-    //         method: 'POST',
-    //         headers: { 'Content-Type': 'application/json' },
-    //         credentials: 'include'
-    //     })
-    //     .then(() => router.push('/'))
-    //     .catch((error) => console.error(error))
-    // }, [])
 
     return (
         <div className="absolute top-0 right-0 mt-5 mr-5"> {/* Align to the left */}
