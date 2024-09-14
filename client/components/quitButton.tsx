@@ -2,7 +2,7 @@
 
 // import { useRouter } from 'next/router'
 // import { URL_BEGIN } from '@/actions/constant'
-import { socket } from '@/app/main'
+import { socket } from '@/pages/main'
 
 export default function quitButton() {
     // const router = useRouter()

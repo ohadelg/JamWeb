@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { socket } from '../app/mainAdmin';
+import { socket } from '../pages/mainAdmin';
 import { SONGS } from '@/actions/constant';
 
 export default function WaitComponent() {
