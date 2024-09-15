@@ -24,6 +24,7 @@ GET = 'GET'
 
 # Settings
 DEBUG = False
+DEPLOY = True
 
 # Messages / Codes
 MESSAGE_SENT = 'MESSAGE_SENT'
