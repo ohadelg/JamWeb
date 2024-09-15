@@ -14,7 +14,7 @@
       {
         "name": "backend",  
         "source": "server", 
-        "startCommand": "python app.py"  // Or your specific Python start command
+        "startCommand": "python main.py"  
       }
     ]
   }
