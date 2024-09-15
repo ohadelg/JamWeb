@@ -23,7 +23,7 @@ POST = 'POST'
 GET = 'GET'
 
 # Settings
-DEBUG = False
+DEBUG = True
 DEPLOY = True
 
 # Messages / Codes
