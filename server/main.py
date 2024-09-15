@@ -23,13 +23,13 @@ from Routes_Api.auth import authCheck
 # ----------------------------------------------------------------
 global app
 app = Flask(__name__)
-CORS(app,  resources={r"/*": {"origins": "https://zooming-exploration-production.up.railway.app", "allow_headers": ["Content-Type", "Authorization"]}})
+CORS(app,  resources={r"/*": {"origins": "https://jam-web-ten.vercel.app", "allow_headers": ["Content-Type", "Authorization"]}})
 app.config['JWT_SECRET_KEY'] = os.urandom(32).hex()
 app.config['JWT_ACCESS_TOKEN_EXPIRES'] = datetime.timedelta(days=1)
 jwt = JWTManager(app)
 
 # # Set global variable for users sql
-socket = SocketIO(app, cors_allowed_origins="http://localhost:3000")
+socket = SocketIO(app, cors_allowed_origins="https://jam-web-ten.vercel.app")
 # setSocketHandlers(socket)
 
 # Configure settings for the database and login manager
