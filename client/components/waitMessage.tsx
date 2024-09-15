@@ -45,7 +45,7 @@ export default function WaitComponent() {
     return () => {
       socket.off('play', handlePlay);
     };
-  }, []);
+  }, [songName]);
 
   // Only when the message changes, it will split the message into lines and update the display
   useEffect(() => {
