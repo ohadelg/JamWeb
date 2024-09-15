@@ -29,7 +29,7 @@ app.config['JWT_ACCESS_TOKEN_EXPIRES'] = datetime.timedelta(days=1)
 jwt = JWTManager(app)
 
 # # Set global variable for users sql
-socket = SocketIO(app, cors_allowed_origins="https://jam-web-ten.vercel.app")
+socket = SocketIO(app, cors_allowed_origins=["https://jam-web-ten.vercel.app", "https://zooming-exploration-production.up.railway.app" ])
 # setSocketHandlers(socket)
 
 # Configure settings for the database and login manager
