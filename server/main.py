@@ -23,7 +23,7 @@ from Routes_Api.auth import authCheck
 # ----------------------------------------------------------------
 global app
 app = Flask(__name__)
-CORS(app,  resources={r"/*": {"origins": "*", "allow_headers": ["Content-Type", "Authorization"]}})
+CORS(app,  resources={r"/*": {"origins": "https://zooming-exploration-production.up.railway.app", "allow_headers": ["Content-Type", "Authorization"]}})
 app.config['JWT_SECRET_KEY'] = os.urandom(32).hex()
 app.config['JWT_ACCESS_TOKEN_EXPIRES'] = datetime.timedelta(days=1)
 jwt = JWTManager(app)
