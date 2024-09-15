@@ -2,7 +2,9 @@
 
 import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
-import { INSTRUMENTS, WEB_PROTOCOL, ADDRESS, PORT } from '../actions/constant'
+import { INSTRUMENTS } from '../actions/constant'
+import { URL_BEGIN } from '../actions/constant'
+// import { WEB_PROTOCOL, ADDRESS, PORT } from '../actions/constant'
 
 export default function CreateRegistryForm({reqType='signup'}) {
     // Create a router object

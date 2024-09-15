@@ -2,7 +2,8 @@
 
 import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
-import { WEB_PROTOCOL, ADDRESS, PORT } from '../actions/constant'
+// import { WEB_PROTOCOL, ADDRESS, PORT } from '../actions/constant'
+import { URL_BEGIN } from '../actions/constant'
 
 // import { validatePassword } from '../utils/validatePassword'
 
