@@ -65,7 +65,7 @@ export default function CreateLoginForm() {
         try {
             console.log('send Post');
             // wait for server response and store it in a variable
-            const response = await fetch(WEB_PROTOCOL + ADDRESS + ':' + PORT + '/api/login', {
+            const response = await fetch(URL_BEGIN + '/api/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

@@ -81,7 +81,7 @@ export default function CreateRegistryForm({reqType='signup'}) {
         try {
             console.log('send Post');
             // wait for server response and store it in a variable
-            const response = await fetch(WEB_PROTOCOL + ADDRESS + ':' + PORT + '/api/'+ reqType, {
+            const response = await fetch(URL_BEGIN + '/api/'+ reqType, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

@@ -4,10 +4,11 @@
 export const INSTRUMENTS = ["Guitar", "Bass", "Drums", "Flute", "Singer"];
 
 // Web Address
-export const WEB_PROTOCOL = 'https://',
-ADDRESS = 'flask-production-8a1a.up.railway.app',
-PORT = '',
+export const WEB_PROTOCOL = 'http://',
+ADDRESS = 'serverjamweb-69lhsh6bv-ohadelgs-projects.vercel.app',
+PORT = 8080,
 URL_BEGIN = WEB_PROTOCOL+ADDRESS; //+":"+PORT;
+ //'flask-production-8a1a.up.railway.app',
 
 // Alerts
 
