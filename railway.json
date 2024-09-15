@@ -13,8 +13,10 @@
           },
           {
             "name": "backend",  
-            "source": "server", 
-            "startCommand": "python main.py"  
+            "source": "server" 
+            "startCommand": "gunicorn main:app",
+            "restartPolicyType": "ON_FAILURE",
+            "restartPolicyMaxRetries": 10
           }
         ]
       }
