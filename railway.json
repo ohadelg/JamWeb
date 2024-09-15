@@ -3,19 +3,19 @@
     "build": {
         "nixpacksVersion": "1.21.2",
         "builder": "NIXPACKS"
-    }
+    },
     "deploy": {
-    "services": [
-      {
-        "name": "frontend", 
-        "source": "client", 
-        "startCommand": "npm run start" 
-      },
-      {
-        "name": "backend",  
-        "source": "server", 
-        "startCommand": "python main.py"  
+        "services": [
+          {
+            "name": "frontend", 
+            "source": "client", 
+            "startCommand": "npm run start" 
+          },
+          {
+            "name": "backend",  
+            "source": "server", 
+            "startCommand": "python main.py"  
+          }
+        ]
       }
-    ]
-  }
 }
