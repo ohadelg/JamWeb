@@ -21,6 +21,7 @@ export default function WaitComponent() {
     const Submit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         socket.emit('chooseSong', {token: tokenID, song: song, dir: SONGS.find(s => s.value === song)?.dir});
+        console.log('Emitting chooseSong event');
         router.push('/main');
     };
 

@@ -9,10 +9,17 @@ export default function WaitComponent() {
   // const [theName, setTheName] = useState<string | null>(""); 
   const [songName, setSongName] = useState("");
   const [text_dir, setText_dir] = useState("ltr");
-  const isAdmin = localStorage.getItem('level') == '1';
+  const [isAdmin, setIsAdmin] = useState(false);
   // setMessageLines(message.split('\n'));
 
   useEffect(() => {
+    if (localStorage.getItem('level') == '1'){setIsAdmin(true);};
+  }, []);
+
+  useEffect(() => {
+    // Check if the user is an admin
+    
+
     // Retrieve name from localStorage once when the component mounts
     // const name = localStorage.getItem('name');
     // if (name != null && name != 'undefined') {setTheName(name);}; 
