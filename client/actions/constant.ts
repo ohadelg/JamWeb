@@ -5,7 +5,7 @@ export const INSTRUMENTS = ["Guitar", "Bass", "Drums", "Flute", "Singer"];
 
 // Web Address
 export const WEB_PROTOCOL = 'https://',
-ADDRESS = 'jamweb-server2-b8b17b142bb4.herokuapp.com',
+ADDRESS = 'stagin-jamweb-73b465b0f557.herokuapp.com',
 PORT = 8080,
 URL_BEGIN = WEB_PROTOCOL+ADDRESS; //+":"+PORT;
  //'flask-production-8a1a.up.railway.app',
