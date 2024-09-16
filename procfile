@@ -1,8 +1,4 @@
 web:
-  cd client
-  npm run build
-  npm run start
-api:
   cd server
   pip install -r requirements.txt
   python main.py
