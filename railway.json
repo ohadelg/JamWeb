@@ -2,7 +2,8 @@
     "$schema": "https://railway.app/railway.schema.json",
     "build": {
         "nixpacksVersion": "1.21.2",
-        "builder": "NIXPACKS"
+        "builder": "NIXPACKS",
+        "buildCommand": "cd server pip install -r requirements.txt && if [ -d \"ui\" ]; then cd ui && npm install && npm run build && cd ..; fi"
     },
     "deploy": {
         "services": [
@@ -14,7 +15,7 @@
           {
             "name": "backend",  
             "source": "server" 
-            "startCommand": "gunicorn main:app",
+            "startCommand": "unicorn main:app",
             "restartPolicyType": "ON_FAILURE",
             "restartPolicyMaxRetries": 10
           }
