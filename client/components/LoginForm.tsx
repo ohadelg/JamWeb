@@ -71,7 +71,7 @@ export default function CreateLoginForm() {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                mode: 'no-cors',
+                mode: 'cors',
                 body: JSON.stringify(formData),
             });
 
