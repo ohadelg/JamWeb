@@ -177,4 +177,4 @@ if __name__ == '__main__':
     elif constants.PROTOCOL != 'https://':
         socket.run(app, debug=constants.DEBUG, port=int(constants.PORT))
     else:
-        socket.run(app, debug=constants.DEBUG, port=int(constants.SSLPORT), ssl_context=constants.SSL) 
+        socket.run(app, debug=constants.DEBUG, port=int(constants.SSLPORT), ssl_context=constants.SSL, allow_unsafe_werkzeug=True) 
