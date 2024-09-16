@@ -24,6 +24,7 @@ def config(app):
     app.config['SECRET_KEY'] = os.urandom(30)
     app.config['CORS_HEADERS'] = 'Content-Type'
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.sqlite3'
+    app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
     
     # Create SQLAlchemy object
     users_db.init_app(app)
