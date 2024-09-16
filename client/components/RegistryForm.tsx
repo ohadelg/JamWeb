@@ -2,8 +2,8 @@
 
 import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
-import { INSTRUMENTS } from '../actions/constant'
-import { URL_BEGIN } from '../actions/constant'
+import { INSTRUMENTS, PROD_URL } from '../actions/constant'
+// import { URL_BEGIN } from '../actions/constant'
 // import { WEB_PROTOCOL, ADDRESS, PORT } from '../actions/constant'
 
 export default function CreateRegistryForm({reqType='signup'}) {
@@ -83,12 +83,12 @@ export default function CreateRegistryForm({reqType='signup'}) {
         try {
             console.log('send Post');
             // wait for server response and store it in a variable
-            const response = await fetch(URL_BEGIN + '/api/'+ reqType, {
+            const response = await fetch(PROD_URL + '/api/'+ reqType, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                mode: 'cors',
+                mode: 'no-cors',
                 body: JSON.stringify(formData),
             });
 

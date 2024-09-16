@@ -1,1 +1,1 @@
-backend: cd server && gunicorn main:app
+web: pip install -r requirments.txt && python main.py
