@@ -5,7 +5,7 @@ export const INSTRUMENTS = ["Guitar", "Bass", "Drums", "Flute", "Singer"];
 
 // Web Address
 export const WEB_PROTOCOL = 'https://',
-ADDRESS = 'serverjamweb.vercel.app',
+ADDRESS = 'server-side-flask-production.up.railway.app',
 PORT = 8080,
 URL_BEGIN = WEB_PROTOCOL+ADDRESS; //+":"+PORT;
  //'flask-production-8a1a.up.railway.app',
