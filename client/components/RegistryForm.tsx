@@ -88,7 +88,7 @@ export default function CreateRegistryForm({reqType='signup'}) {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                mode: 'cors',
+                mode: 'same-origin',
                 body: JSON.stringify(formData),
             });
 
