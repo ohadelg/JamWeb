@@ -13,7 +13,7 @@ LOGOUT = 'LOGOUT'
 # User
 
 # Link
-PROTOCOL = 'https://'
+PROTOCOL = 'http://'
 SSL = 'adhoc'
 HOST = 'zooming-exploration-production.up.railway.app' # 'localhost:
 PORT = 8080

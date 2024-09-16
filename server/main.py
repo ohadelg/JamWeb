@@ -23,7 +23,7 @@ from Routes_Api.auth import authCheck
 # ----------------------------------------------------------------
 global app
 app = Flask(__name__)
-CORS(app, supports_credentials=True,  resources={r"/*": {"origins": "*", "allow_headers": ["Content-Type", "Authorization"]}})
+CORS(app, supports_credentials=True,  resources={r"/*": {"mode":"no-cors","origins": "*", "allow_headers": ["Content-Type", "Authorization"]}})
 app.config['JWT_SECRET_KEY'] = os.urandom(32).hex()
 app.config['JWT_ACCESS_TOKEN_EXPIRES'] = datetime.timedelta(days=1)
 jwt = JWTManager(app)
@@ -173,7 +173,7 @@ if __name__ == '__main__':
     # for test only we will use ssl_context='adhoc'
 
     if constants.DEPLOY:
-        socket.run(app, debug=constants.DEBUG, port=int(constants.PORT), host=constants.HOST_DEPLOY)
+        socket.run(app, debug=constants.DEBUG, port=int(constants.PORT))
     elif constants.PROTOCOL != 'https://':
         socket.run(app, debug=constants.DEBUG, port=int(constants.PORT))
     else:
