@@ -1,1 +1,1 @@
-web: cd server && pip install -r requirements.txt && python main.py
+server: cd server && pip install -r requirements.txt && gunicorn main:app
