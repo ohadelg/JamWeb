@@ -10,14 +10,10 @@
           {
             "name": "frontend", 
             "source": "client", 
-            "startCommand": "npm run start" 
           },
           {
             "name": "backend",  
             "source": "server" 
-            "startCommand": "unicorn main:app",
-            "restartPolicyType": "ON_FAILURE",
-            "restartPolicyMaxRetries": 10
           }
         ]
       }
