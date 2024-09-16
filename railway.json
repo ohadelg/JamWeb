@@ -9,7 +9,7 @@
         "services": [
           {
             "name": "frontend", 
-            "source": "client", 
+            "source": "client" 
           },
           {
             "name": "backend",  
