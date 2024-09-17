@@ -29,9 +29,9 @@ def login():
     user = Users.query.filter_by(email=data['email']).first()
     
     if constants.PROTOCOL == 'https://':
-        if not user or not check_password_hash(user.password, data['password']):
-            print('Unauthorized - Invalid Email or password')
-            return jsonify({'error': 'Unauthorized - Invalid Email or password'}), 401
+        if not user or not user.password == data['password']:
+            print('Unauthorized - Invalid Email or password!')
+            return jsonify({'error': 'Unauthorized - Invalid Email or password!'}), 401
     else:
         if not user or not user.password == data['password']:
             print('Unauthorized - Invalid Email or password')
