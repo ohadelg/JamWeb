@@ -8,7 +8,7 @@ export const WEB_PROTOCOL = 'https://',
 ADDRESS = 'jamweb-server2-b8b17b142bb4.herokuapp.com',
 PORT = 8080,
 URL_BEGIN = WEB_PROTOCOL+ADDRESS, //+":"+PORT;
-PROD_URL = WEB_PROTOCOL+ADDRESS+":443"; //+":"+PORT;
+PROD_URL = WEB_PROTOCOL+ADDRESS+":8080"; //+":"+PORT;
  //'flask-production-8a1a.up.railway.app',
 
 // Alerts

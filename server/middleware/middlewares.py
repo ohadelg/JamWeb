@@ -23,7 +23,7 @@ def valid_data_login_middleware():
         def wrapper(*args, **kwargs):
             data = request.validated_data
             if not data.get('email') or not data.get('password'):
-                return jsonify({'error': 'Email and password are required'}), 411
+                return jsonify({'error': 'Email and password are required'}), 401
             return func(*args, **kwargs)
         return wrapper
     return decorator
