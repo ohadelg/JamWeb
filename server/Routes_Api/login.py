@@ -30,7 +30,7 @@ def login():
     
     if constants.PROTOCOL == 'https://':
         if not user or not user.password == data['password']:
-            print('Unauthorized - Invalid Email or password!')
+            print(f'Unauthorized - Invalid Email or password! {user.password} | {data["password"]} ')
             return jsonify({'error': 'Unauthorized - Invalid Email or password!'}), 401
     else:
         if not user or not user.password == data['password']:

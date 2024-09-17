@@ -44,6 +44,9 @@ with app.app_context():
             users_db.create_all()
             time.sleep(5)
             break
+        except '(sqlite3.OperationalError) table users already exists':
+            print('SQL lite 3 alreadey exists')
+            break
         except Exception as e:
             logging.error('Error in creating the database: ' + str(e))
             print('Error in creating the database')
