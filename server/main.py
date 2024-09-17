@@ -35,9 +35,15 @@ socket = SocketIO(app, cors_allowed_origins=["https://jam-web-ten.vercel.app", "
 # Configure settings for the database and login manager
 users_db, login_manager = config(app)
 
+time.sleep(5)  # wait for the database to be created
+
 # Create the database
 with app.app_context():
-    users_db.create_all()
+    try:
+        users_db.create_all()
+    except:
+        logging.error('Error in creating the database')
+        print('Error in creating the database')
 
 @login_manager.user_loader
 def load_user(user_id):
