@@ -179,6 +179,16 @@ app.add_url_rule('/api/logout', 'logout', logout, methods=['GET'])
 app.add_url_rule('/api/authCheck', 'authCheck', authCheck, methods=['GET'])
 # ------------------------------------------------------------------------
 
+if constants.DEPLOY:
+    socket.run(app, debug=constants.DEBUG, port=int(constants.PORT))
+    print(f"| Socket Setup | Deploy: {constants.DEPLOY} | port: {constants.PORT} |")
+elif constants.PROTOCOL != 'https://':
+    socket.run(app, debug=constants.DEBUG, port=int(constants.PORT))
+    print(f"| Socket Setup | Deploy: {constants.DEPLOY} | port: {constants.PORT} |")
+else:
+    socket.run(app, debug=constants.DEBUG, port=int(constants.SSLPORT), ssl_context=constants.SSL, allow_unsafe_werkzeug=True)
+    print(f"| Socket Setup | Deploy: {constants.DEPLOY} | SSL port: {constants.PORT} |")
+
 if __name__ == '__main__':
     # to run the server with ssl need to add the ssl_context=('cert.pem', 'key.pem') which are the certificates:
     # cert.pem is the certificate file -
@@ -186,12 +196,12 @@ if __name__ == '__main__':
     # for test only we will use ssl_context='adhoc'
     print(f"\n\n-------------------------------Got into main loop!!! --------------------------------\n\n")
 
-    if constants.DEPLOY:
-        socket.run(app, debug=constants.DEBUG, port=int(constants.PORT))
-        print(f"Socket Setup | Deploy: {constants.DEPLOY} | port: {constants.PORT}")
-    elif constants.PROTOCOL != 'https://':
-        socket.run(app, debug=constants.DEBUG, port=int(constants.PORT))
-        print(f"Socket Setup | Deploy: {constants.DEPLOY} | port: {constants.PORT}")
-    else:
-        socket.run(app, debug=constants.DEBUG, port=int(constants.SSLPORT), ssl_context=constants.SSL, allow_unsafe_werkzeug=True)
-        print(f"Socket Setup | Deploy: {constants.DEPLOY} | SSL port: {constants.PORT}")
+    # if constants.DEPLOY:
+    #     socket.run(app, debug=constants.DEBUG, port=int(constants.PORT))
+    #     print(f"Socket Setup | Deploy: {constants.DEPLOY} | port: {constants.PORT}")
+    # elif constants.PROTOCOL != 'https://':
+    #     socket.run(app, debug=constants.DEBUG, port=int(constants.PORT))
+    #     print(f"Socket Setup | Deploy: {constants.DEPLOY} | port: {constants.PORT}")
+    # else:
+    #     socket.run(app, debug=constants.DEBUG, port=int(constants.SSLPORT), ssl_context=constants.SSL, allow_unsafe_werkzeug=True)
+    #     print(f"Socket Setup | Deploy: {constants.DEPLOY} | SSL port: {constants.PORT}")
