@@ -17,7 +17,7 @@ PROTOCOL = 'https://'
 SSL = 'adhoc'
 HOST = 'zooming-exploration-production.up.railway.app' # 'localhost:
 PORT = 8080
-SSLPORT = 443
+SSLPORT = 8080
 
 # Return Codes
 POST = 'POST'
