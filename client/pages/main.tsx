@@ -4,7 +4,7 @@ import WaitComponent from "@/components/waitMessage";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import io from "socket.io-client";
-// import { URL_BEGIN } from "../actions/constant";
+import { PROD_URL } from "../actions/constant";
 // import { emit } from "process";
 // import exp from "constants";
 
@@ -25,7 +25,7 @@ import io from "socket.io-client";
 
 let tokenID: string | null = null;
 
-export const socket = io('http://localhost:8080', {
+export const socket = io(PROD_URL, {
     auth: {'token': tokenID},
     transports: ['websocket', 'polling', 'webtransport']
 });
