@@ -1,8 +1,10 @@
+import { PROD_URL } from "@/actions/constant";
 import LogoutButton from "@/components/Logout";
 import WaitComponent from "@/components/chooseSong";
 // import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { io } from "socket.io-client";
+// import { PROD_URL } from "@/actions/constant";
 
 export let name: string | null = null;
 export let tokenID: string | null = null;
@@ -14,7 +16,7 @@ if (typeof window !== 'undefined') {
     console.log("Got token: ", tokenID);
 }
 
-export const socket = io('http://localhost:8080', {
+export const socket = io(PROD_URL, {
     auth: {'token': tokenID},
     transports: ['websocket', 'polling', 'webtransport']
 });

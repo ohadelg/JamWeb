@@ -184,6 +184,7 @@ if __name__ == '__main__':
     # cert.pem is the certificate file -
     # key.pem is the key file - 
     # for test only we will use ssl_context='adhoc'
+    print(f"\n\n-------------------------------Got into main loop!!! --------------------------------\n\n")
 
     if constants.DEPLOY:
         socket.run(app, debug=constants.DEBUG, port=int(constants.PORT))
