@@ -44,13 +44,13 @@ with app.app_context():
             users_db.create_all()
             time.sleep(5)
             break
-        except '(sqlite3.OperationalError) table users already exists':
-            print('SQL lite 3 alreadey exists')
-            break
         except Exception as e:
-            logging.error('Error in creating the database: ' + str(e))
-            print('Error in creating the database')
-            time.sleep(5)
+            if "table users already exists" in str(e):
+                logging.info('Users table already exists. Skipping creation.')
+                break  # Exit the loop if the table already exists
+            else:
+                logging.error('Error creating the database: %s', e)
+                time.sleep(5)  # Wait before retrying
 
 @login_manager.user_loader
 def load_user(user_id):
