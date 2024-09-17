@@ -58,7 +58,8 @@ def content_type_middleware(Content_Type: str):
         def wrapper(*args, **kwargs):
             print(f"request before: {request}")
             if request.headers.get('Content-Type') != Content_Type:
-                return jsonify({'error': 'Bad request. Content-Type must be ' + Content_Type}), 414
+                print(f"Content-Type: {request.headers.get('Content-Type')}")
+                return jsonify({'error': 'Bad request. Content-Type must be ' + Content_Type}), 415
             return func(*args, **kwargs)
         return wrapper
     return decorator
