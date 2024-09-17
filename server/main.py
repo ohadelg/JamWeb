@@ -39,11 +39,15 @@ time.sleep(5)  # wait for the database to be created
 
 # Create the database
 with app.app_context():
-    try:
-        users_db.create_all()
-    except:
-        logging.error('Error in creating the database')
-        print('Error in creating the database')
+    for i in range(3):
+        try:
+            users_db.create_all()
+            time.sleep(5)
+            break
+        except Exception as e:
+            logging.error('Error in creating the database: ' + str(e))
+            print('Error in creating the database')
+            time.sleep(5)
 
 @login_manager.user_loader
 def load_user(user_id):
