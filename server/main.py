@@ -186,8 +186,8 @@ elif constants.PROTOCOL != 'https://':
     print(f"| Socket Setup | Deploy: {constants.DEPLOY} | port: {constants.PORT} |")
     socket.run(app, debug=constants.DEBUG, port=int(constants.PORT))
 else:
-    print(f"| Socket Setup | Deploy: {constants.DEPLOY} | SSL port: {constants.PORT} |")
-    socket.run(app, debug=constants.DEBUG, port=int(constants.SSLPORT), ssl_context=constants.SSL, allow_unsafe_werkzeug=True)
+    print(f"| Socket Setup | Deploy: {constants.DEPLOY} | SSL port: {constants.SSLPORT} |")
+    socket.run(app, debug=constants.DEBUG, port=int(constants.SSLPORT), allow_unsafe_werkzeug=True)
     
 
 if __name__ == '__main__':
